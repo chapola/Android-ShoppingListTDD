@@ -2,15 +2,15 @@ package com.example.shoppinglisttdd.repositories
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.shoppinglisttdd.data.local.ShoppingItems
+import com.example.shoppinglisttdd.data.local.ShoppingItem
 import com.example.shoppinglisttdd.data.remote.response.ImageResponse
 import com.example.shoppinglisttdd.repositries.ShoppingRepository
 import com.example.shoppinglisttdd.util.Resource
 
 class FakeShoppingRepository: ShoppingRepository {
 
-    private val shoppingItems = mutableListOf<ShoppingItems>()
-    private val observableAllShoppingItems = MutableLiveData<List<ShoppingItems>>()
+    private val shoppingItems = mutableListOf<ShoppingItem>()
+    private val observableAllShoppingItems = MutableLiveData<List<ShoppingItem>>()
     private val observableTotalPrice = MutableLiveData<Float>()
 
     private var shouldReturnNetworkError = false
@@ -27,17 +27,17 @@ class FakeShoppingRepository: ShoppingRepository {
         return shoppingItems.sumOf { it.price.toDouble() }.toFloat()
     }
 
-    override suspend fun insertShoppingItem(shoppingItem: ShoppingItems) {
+    override suspend fun insertShoppingItem(shoppingItem: ShoppingItem) {
         shoppingItems.add(shoppingItem)
         refreshLiveData()
     }
 
-    override suspend fun deleteShoppingItem(shoppingItem: ShoppingItems) {
+    override suspend fun deleteShoppingItem(shoppingItem: ShoppingItem) {
         shoppingItems.remove(shoppingItem)
         refreshLiveData()
     }
 
-    override fun observeAllShoppingItem(): LiveData<List<ShoppingItems>> {
+    override fun observeAllShoppingItem(): LiveData<List<ShoppingItem>> {
         return observableAllShoppingItems
     }
 

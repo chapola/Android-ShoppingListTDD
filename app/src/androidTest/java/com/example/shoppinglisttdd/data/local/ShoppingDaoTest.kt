@@ -41,7 +41,7 @@ class ShoppingDaoTest {
 
     @Test
     fun insertShoppingItem() = runBlockingTest {
-        val shoppingItem = ShoppingItems("name", 1, 1f, "url", id = 1)
+        val shoppingItem = ShoppingItem("name", 1, 1f, "url", id = 1)
         dao.insertShoppingItems(shoppingItem)
 
         val allShoppingItems = dao.observeAllShoppingItems().getOrAwaitValue()
@@ -50,7 +50,7 @@ class ShoppingDaoTest {
     }
     @Test
     fun deleteShoppingItems() = runBlockingTest {
-        val shoppingItem = ShoppingItems("name", 1, 1f, "url", id = 1)
+        val shoppingItem = ShoppingItem("name", 1, 1f, "url", id = 1)
         dao.insertShoppingItems(shoppingItem)
         dao.deleteShoppingItems(shoppingItem)
 
@@ -60,10 +60,10 @@ class ShoppingDaoTest {
     }
     @Test
     fun observeTotalPrice() = runBlockingTest {
-        val shoppingItem1 = ShoppingItems("name", 5, 100f, "url", id = 1)
-        val shoppingItem2 = ShoppingItems("name", 2, 10f, "url", id = 2)
-        val shoppingItem3 = ShoppingItems("name", 10, 123f, "url", id = 3)
-        val shoppingItem4 = ShoppingItems("name", 15, 134f, "url", id = 4)
+        val shoppingItem1 = ShoppingItem("name", 5, 100f, "url", id = 1)
+        val shoppingItem2 = ShoppingItem("name", 2, 10f, "url", id = 2)
+        val shoppingItem3 = ShoppingItem("name", 10, 123f, "url", id = 3)
+        val shoppingItem4 = ShoppingItem("name", 15, 134f, "url", id = 4)
 
         dao.insertShoppingItems(shoppingItem1)
         dao.insertShoppingItems(shoppingItem2)

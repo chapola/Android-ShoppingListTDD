@@ -2,7 +2,7 @@ package com.example.shoppinglisttdd.repositries
 
 import androidx.lifecycle.LiveData
 import com.example.shoppinglisttdd.data.local.ShoppingDao
-import com.example.shoppinglisttdd.data.local.ShoppingItems
+import com.example.shoppinglisttdd.data.local.ShoppingItem
 import com.example.shoppinglisttdd.data.remote.PixabayAPI
 import com.example.shoppinglisttdd.data.remote.response.ImageResponse
 import com.example.shoppinglisttdd.util.Resource
@@ -13,14 +13,14 @@ class DefaultShoppingRepository @Inject constructor(
     private val shoppingDao: ShoppingDao,
     private val pixabayAPI: PixabayAPI
 ): ShoppingRepository{
-    override suspend fun insertShoppingItem(shoppingItems: ShoppingItems) {
-        shoppingDao.insertShoppingItems(shoppingItems)
+    override suspend fun insertShoppingItem(shoppingItem: ShoppingItem) {
+        shoppingDao.insertShoppingItems(shoppingItem)
     }
-    override suspend fun deleteShoppingItem(shoppingItems: ShoppingItems) {
-        shoppingDao.deleteShoppingItems(shoppingItems)
+    override suspend fun deleteShoppingItem(shoppingItem: ShoppingItem) {
+        shoppingDao.deleteShoppingItems(shoppingItem)
     }
 
-    override fun observeAllShoppingItem(): LiveData<List<ShoppingItems>> {
+    override fun observeAllShoppingItem(): LiveData<List<ShoppingItem>> {
         return shoppingDao.observeAllShoppingItems()
     }
 
